@@ -38,8 +38,13 @@ export async function askExpert(question: string) {
     });
     
     return response.text;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Erro ao consultar o Gemini:", error);
-    return "Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente em instantes.";
+    
+    if (error.message === "API key is missing") {
+      return "⚠️ **Erro de Configuração:** A chave da API (`GEMINI_API_KEY`) não foi encontrada no servidor.\n\nPara resolver isso na Vercel:\n1. Vá no painel do seu projeto na Vercel.\n2. Acesse **Settings** > **Environment Variables**.\n3. Adicione a variável com o nome `GEMINI_API_KEY` e cole sua chave no valor.\n4. Vá na aba **Deployments**, clique nos 3 pontinhos do deploy mais recente e escolha **Redeploy**.";
+    }
+    
+    return `Desculpe, ocorreu um erro ao processar sua pergunta. Detalhes técnicos: ${error.message || "Erro desconhecido"}`;
   }
 }
