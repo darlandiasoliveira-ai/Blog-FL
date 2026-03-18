@@ -19,7 +19,7 @@ export async function askExpert(question: string) {
   try {
     const ai = getAIClient();
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-preview",
+      model: "gemini-3-flash-preview",
       contents: question,
       config: {
         systemInstruction: `Você é um especialista amigável e altamente conhecedor no nicho de: ${SITE_CONFIG.niche}.
