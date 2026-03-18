@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application, potentially an admin.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "User's display name" },
+        "email": { "type": "string", "format": "email", "description": "User's email address" },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "User's role" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["name", "email", "role", "createdAt"]
+    },
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "A blog post article.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the post" },
+        "excerpt": { "type": "string", "description": "A short summary of the post" },
+        "content": { "type": "string", "description": "The full markdown content of the post" },
+        "imageUrl": { "type": "string", "description": "URL of the cover image" },
+        "date": { "type": "string", "description": "Formatted date string for display" },
+        "author": { "type": "string", "description": "Name of the author" },
+        "category": { "type": "string", "description": "Category of the post" },
+        "published": { "type": "boolean", "description": "Whether the post is publicly visible" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["title", "excerpt", "content", "imageUrl", "date", "author", "category", "published", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles and roles."
+    },
+    "/posts/{postId}": {
+      "schema": { "$ref": "#/entities/BlogPost" },
+      "description": "Stores blog posts."
+    }
+  }
+}
