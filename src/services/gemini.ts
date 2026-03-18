@@ -1,10 +1,23 @@
 import { GoogleGenAI } from "@google/genai";
 import { SITE_CONFIG } from "../config";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let aiClient: GoogleGenAI | null = null;
+
+function getAIClient() {
+  if (!aiClient) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error("GEMINI_API_KEY is not defined. Please check your environment variables.");
+      throw new Error("API key is missing");
+    }
+    aiClient = new GoogleGenAI({ apiKey });
+  }
+  return aiClient;
+}
 
 export async function askExpert(question: string) {
   try {
+    const ai = getAIClient();
     const response = await ai.models.generateContent({
       model: "gemini-3.1-flash-preview",
       contents: question,
