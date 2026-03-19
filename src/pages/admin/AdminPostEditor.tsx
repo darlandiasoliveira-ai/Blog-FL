@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp, collection } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../../firebase';
 import { BlogPost } from '../../types';
-import { Save, ArrowLeft } from 'lucide-react';
+import { Save, ArrowLeft, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 
 export default function AdminPostEditor() {
   const { id } = useParams<{ id: string }>();
@@ -22,6 +23,9 @@ export default function AdminPostEditor() {
   });
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingContentImage, setUploadingContentImage] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
     if (isEditing) {
@@ -58,6 +62,66 @@ export default function AdminPostEditor() {
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }));
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    setUploadProgress(0);
+
+    const storageRef = ref(storage, `blog-images/${Date.now()}_${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+      },
+      (error) => {
+        console.error("Error uploading image:", error);
+        alert("Erro ao fazer upload da imagem. Verifique as permissões do Storage.");
+        setUploadingImage(false);
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        setFormData(prev => ({ ...prev, imageUrl: downloadURL }));
+        setUploadingImage(false);
+      }
+    );
+  };
+
+  const handleContentImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingContentImage(true);
+
+    const storageRef = ref(storage, `blog-images/${Date.now()}_${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // We can use a simple alert or toast for progress, or just let it upload silently
+    // For now, let's just append it when done
+    uploadTask.on(
+      'state_changed',
+      () => {},
+      (error) => {
+        console.error("Error uploading image:", error);
+        alert("Erro ao fazer upload da imagem para o conteúdo.");
+        setUploadingContentImage(false);
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        const imageMarkdown = `\n![${file.name}](${downloadURL})\n`;
+        setFormData(prev => ({
+          ...prev,
+          content: prev.content + imageMarkdown
+        }));
+        setUploadingContentImage(false);
+      }
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -139,16 +203,45 @@ export default function AdminPostEditor() {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">URL da Imagem de Capa</label>
-            <input
-              type="url"
-              name="imageUrl"
-              required
-              value={formData.imageUrl}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
-            />
+          <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Imagem de Capa</label>
+            <div className="flex flex-col gap-4">
+              {/* Image Preview */}
+              {formData.imageUrl && (
+                <div className="relative w-full max-w-md aspect-video rounded-lg overflow-hidden border border-gray-200">
+                  <img src={formData.imageUrl} alt="Capa" className="w-full h-full object-cover" />
+                </div>
+              )}
+              
+              <div className="flex items-center gap-4">
+                <label className="relative cursor-pointer bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors">
+                  {uploadingImage ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Upload className="h-4 w-4" />
+                  )}
+                  {uploadingImage ? `Enviando... ${Math.round(uploadProgress)}%` : 'Fazer Upload de Imagem'}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    disabled={uploadingImage}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+                  />
+                </label>
+                <span className="text-sm text-gray-500">ou cole a URL abaixo:</span>
+              </div>
+
+              <input
+                type="url"
+                name="imageUrl"
+                placeholder="https://exemplo.com/imagem.jpg"
+                required
+                value={formData.imageUrl}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+              />
+            </div>
           </div>
 
           <div>
@@ -176,7 +269,24 @@ export default function AdminPostEditor() {
           </div>
 
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Conteúdo (Markdown)</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-sm font-medium text-gray-700">Conteúdo (Markdown)</label>
+              <label className={`cursor-pointer text-sm font-medium flex items-center gap-1 px-3 py-1.5 rounded-md transition-colors ${uploadingContentImage ? 'text-gray-400 bg-gray-50 cursor-not-allowed' : 'text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100'}`}>
+                {uploadingContentImage ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <ImageIcon className="h-4 w-4" />
+                )}
+                {uploadingContentImage ? 'Enviando...' : 'Inserir Imagem no Texto'}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleContentImageUpload}
+                  disabled={uploadingContentImage}
+                  className="hidden"
+                />
+              </label>
+            </div>
             <textarea
               name="content"
               required

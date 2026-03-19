@@ -67,7 +67,7 @@ export default function Assistant() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 h-[calc(100vh-4rem)] flex flex-col">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center p-3 bg-brand-100 rounded-full mb-4 text-brand-600">
+        <div className="inline-flex items-center justify-center p-3 bg-brand-50 rounded-full mb-4 text-accent-500 border border-brand-100">
           <Sparkles className="h-8 w-8" />
         </div>
         <h1 className="text-3xl font-serif font-bold text-gray-900 mb-2">Assistente Especialista</h1>
@@ -85,15 +85,15 @@ export default function Assistant() {
               className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {message.role === 'assistant' && (
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600">
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-500 flex items-center justify-center text-accent-400 shadow-sm">
                   <Bot className="h-6 w-6" />
                 </div>
               )}
               
               <div className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-5 py-4 ${
                 message.role === 'user' 
-                  ? 'bg-gray-900 text-white rounded-tr-none' 
-                  : 'bg-gray-50 border border-gray-100 text-gray-800 rounded-tl-none'
+                  ? 'bg-brand-600 text-white rounded-tr-none shadow-sm' 
+                  : 'bg-white border border-gray-100 text-gray-800 rounded-tl-none shadow-sm'
               }`}>
                 {message.role === 'user' ? (
                   <p className="whitespace-pre-wrap">{message.content}</p>
@@ -114,10 +114,10 @@ export default function Assistant() {
           
           {isLoading && (
             <div className="flex gap-4 justify-start">
-              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600">
+              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-500 flex items-center justify-center text-accent-400 shadow-sm">
                 <Bot className="h-6 w-6" />
               </div>
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none px-5 py-4 flex items-center gap-2 text-gray-500">
+              <div className="bg-white border border-gray-100 shadow-sm rounded-2xl rounded-tl-none px-5 py-4 flex items-center gap-2 text-gray-500">
                 <Loader2 className="h-5 w-5 animate-spin" />
                 <span className="text-sm font-medium">Pensando...</span>
               </div>
@@ -140,7 +140,7 @@ export default function Assistant() {
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="absolute right-2 p-2.5 bg-brand-600 text-white rounded-full hover:bg-brand-700 disabled:opacity-50 disabled:hover:bg-brand-600 transition-colors"
+              className="absolute right-2 p-2.5 bg-accent-400 text-brand-900 rounded-full hover:bg-accent-500 disabled:opacity-50 disabled:hover:bg-accent-400 transition-colors shadow-sm"
             >
               <Send className="h-5 w-5" />
             </button>

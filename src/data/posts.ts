@@ -34,7 +34,10 @@ Se você está em dúvida sobre qual modelo escolher, acesse a **[FL Colchões](
     imageUrl: "https://picsum.photos/seed/mattress/800/500",
     date: "15 Mar 2026",
     author: "Especialista em Sono",
-    category: "Colchões"
+    category: "Colchões",
+    published: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   },
   {
     id: "2",
@@ -66,7 +69,10 @@ Precisa de mais espaço? Confira nossa linha completa de guarda-roupas espaçoso
     imageUrl: "https://picsum.photos/seed/wardrobe/800/500",
     date: "10 Mar 2026",
     author: "Especialista em Organização",
-    category: "Quarto"
+    category: "Quarto",
+    published: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   },
   {
     id: "3",
@@ -100,6 +106,9 @@ Transforme sua cozinha hoje mesmo! Visite a **[FL Colchões](https://www.flcolch
     imageUrl: "https://picsum.photos/seed/kitchen-cabinet/800/500",
     date: "05 Mar 2026",
     author: "Especialista em Interiores",
-    category: "Cozinha"
+    category: "Cozinha",
+    published: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   }
 ];

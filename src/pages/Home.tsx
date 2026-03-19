@@ -48,8 +48,8 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-sm font-medium mb-6">
-                <Sparkles className="h-4 w-4" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-sm font-bold mb-6 border border-brand-100">
+                <Sparkles className="h-4 w-4 text-accent-500" />
                 <span>Especialistas em {SITE_CONFIG.niche}</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight mb-6">
@@ -61,7 +61,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/assistente"
-                  className="inline-flex justify-center items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-8 py-3.5 rounded-full text-base font-medium transition-colors shadow-lg shadow-gray-200"
+                  className="inline-flex justify-center items-center gap-2 bg-accent-400 hover:bg-accent-500 text-brand-900 px-8 py-3.5 rounded-full text-base font-bold transition-colors shadow-lg shadow-accent-200"
                 >
                   <Sparkles className="h-5 w-5" />
                   Perguntar à IA
@@ -70,7 +70,7 @@ export default function Home() {
                   href={SITE_CONFIG.salesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand-600 hover:text-brand-600 text-gray-900 px-8 py-3.5 rounded-full text-base font-medium transition-colors"
+                  className="inline-flex justify-center items-center gap-2 bg-white border-2 border-brand-600 text-brand-600 hover:bg-brand-50 px-8 py-3.5 rounded-full text-base font-bold transition-colors"
                 >
                   {SITE_CONFIG.ctaText}
                   <ArrowRight className="h-5 w-5" />
@@ -93,13 +93,13 @@ export default function Home() {
                 />
               </div>
               {/* Decorative element */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-xs">
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-brand-100 max-w-xs">
                 <div className="flex items-start gap-4">
-                  <div className="bg-brand-100 p-3 rounded-full text-brand-600">
+                  <div className="bg-brand-50 p-3 rounded-full text-brand-600">
                     <MessageSquare className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">Dúvidas sobre produtos?</p>
+                    <p className="text-sm font-bold text-brand-900">Dúvidas sobre produtos?</p>
                     <p className="text-xs text-gray-500 mt-1">Nossa IA recomenda o melhor para você.</p>
                   </div>
                 </div>

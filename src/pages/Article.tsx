@@ -109,7 +109,7 @@ export default function Article() {
             href={SITE_CONFIG.salesUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex justify-center items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-full text-base font-medium transition-colors shadow-sm"
+            className="inline-flex justify-center items-center gap-2 bg-accent-400 hover:bg-accent-500 text-brand-900 px-8 py-3.5 rounded-full text-base font-bold transition-colors shadow-sm"
           >
             <ShoppingBag className="h-5 w-5" />
             {SITE_CONFIG.ctaText}

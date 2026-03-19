@@ -25,11 +25,22 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link to="/" className="flex items-center gap-2">
-                <HomeIcon className="h-8 w-8 text-brand-600" />
-                <span className="font-serif font-bold text-xl text-gray-900 tracking-tight">
-                  {SITE_CONFIG.siteName}
-                </span>
+              <Link to="/" className="flex items-center gap-3 group">
+                {/* CSS Logo mimicking the FL brand */}
+                <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-300 to-brand-500 opacity-80"></div>
+                  <span className="relative z-10 font-sans font-black text-xl text-accent-400 tracking-tighter" style={{ textShadow: '1px 1px 0px #b38f2d' }}>
+                    FL
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-sans font-black text-[17px] text-brand-600 leading-none tracking-tight uppercase">
+                    FL
+                  </span>
+                  <span className="font-sans font-bold text-[9px] text-brand-600 leading-none tracking-[0.15em] uppercase mt-0.5">
+                    Móveis e Colchões
+                  </span>
+                </div>
               </Link>
             </div>
 
@@ -56,7 +67,7 @@ export default function Layout() {
                 href={SITE_CONFIG.salesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors shadow-sm"
+                className="flex items-center gap-2 bg-accent-400 hover:bg-accent-500 text-brand-900 px-5 py-2.5 rounded-full text-sm font-bold transition-colors shadow-sm"
               >
                 <ShoppingBag className="h-4 w-4" />
                 {SITE_CONFIG.ctaText}
@@ -101,7 +112,7 @@ export default function Layout() {
                 href={SITE_CONFIG.salesUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-3 py-3 mt-4 rounded-md text-base font-medium bg-brand-600 text-white"
+                className="flex items-center gap-3 px-3 py-3 mt-4 rounded-md text-base font-bold bg-accent-400 text-brand-900"
               >
                 <ShoppingBag className="h-5 w-5" />
                 {SITE_CONFIG.ctaText}
@@ -120,11 +131,21 @@ export default function Layout() {
       <footer className="bg-white border-t border-gray-200 mt-auto">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <HomeIcon className="h-6 w-6 text-brand-600" />
-              <span className="font-serif font-bold text-lg text-gray-900">
-                {SITE_CONFIG.siteName}
-              </span>
+            <div className="flex items-center gap-3">
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-brand-500 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-300 to-brand-500 opacity-80"></div>
+                <span className="relative z-10 font-sans font-black text-base text-accent-400 tracking-tighter" style={{ textShadow: '1px 1px 0px #b38f2d' }}>
+                  FL
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-sans font-black text-sm text-brand-600 leading-none tracking-tight uppercase">
+                  FL
+                </span>
+                <span className="font-sans font-bold text-[7px] text-brand-600 leading-none tracking-[0.15em] uppercase mt-0.5">
+                  Móveis e Colchões
+                </span>
+              </div>
             </div>
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {SITE_CONFIG.siteName}. Todos os direitos reservados.
