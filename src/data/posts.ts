@@ -29,7 +29,7 @@ Se você optar por um colchão de espuma, a densidade é o fator mais importante
 
 O colchão ideal mantém a sua coluna alinhada. Ele não pode ser duro demais a ponto de machucar os ombros e quadris, nem macio demais a ponto de afundar a coluna.
 
-Se você está em dúvida sobre qual modelo escolher, acesse a **[FL Colchões](https://www.flcolchoes.com)** ou use nosso Assistente Virtual para receber uma recomendação personalizada!
+Se você está em dúvida sobre qual modelo escolher, acesse a **[FL Móveis e Colchões](https://www.flcolchoes.com)** ou use nosso Assistente Virtual para receber uma recomendação personalizada!
     `,
     imageUrl: "https://picsum.photos/seed/mattress/800/500",
     date: "15 Mar 2026",
@@ -64,7 +64,7 @@ Para gavetas, a técnica de dobra em "arquivamento" (estilo Marie Kondo) é imba
 
 Guarde itens de uso menos frequente (roupas de cama pesadas, malas, roupas de inverno) nas prateleiras mais altas. Deixe a altura dos olhos e das mãos para as peças do dia a dia.
 
-Precisa de mais espaço? Confira nossa linha completa de guarda-roupas espaçosos e modernos na **[FL Colchões](https://www.flcolchoes.com)**.
+Precisa de mais espaço? Confira nossa linha completa de guarda-roupas espaçosos e modernos na **[FL Móveis e Colchões](https://www.flcolchoes.com)**.
     `,
     imageUrl: "https://picsum.photos/seed/wardrobe/800/500",
     date: "10 Mar 2026",
@@ -101,7 +101,7 @@ A cozinha é um ambiente úmido e sujeito a gordura.
 
 Dê preferência a armários que possuam gavetões profundos para panelas e potes. Eles são muito mais ergonômicos do que prateleiras baixas.
 
-Transforme sua cozinha hoje mesmo! Visite a **[FL Colchões](https://www.flcolchoes.com)** e descubra nossos modelos de armários de cozinha que unem design e praticidade.
+Transforme sua cozinha hoje mesmo! Visite a **[FL Móveis e Colchões](https://www.flcolchoes.com)** e descubra nossos modelos de armários de cozinha que unem design e praticidade.
     `,
     imageUrl: "https://picsum.photos/seed/kitchen-cabinet/800/500",
     date: "05 Mar 2026",

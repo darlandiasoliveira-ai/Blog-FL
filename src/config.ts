@@ -10,12 +10,12 @@ export const SITE_CONFIG = {
   salesUrl: "https://www.flcolchoes.com",
   
   // Qual é o nome da sua loja/marca?
-  salesSiteName: "FL Colchões",
+  salesSiteName: "FL Móveis e Colchões",
   
   // ==========================================
   // TEXTOS DO SITE
   // ==========================================
-  siteName: "Blog FL Colchões",
+  siteName: "Blog FL Móveis e Colchões",
   heroTitle: "Transforme sua Casa com Conforto e Estilo",
   heroSubtitle: "Dicas de decoração, guias para escolher o colchão perfeito e o móvel ideal para cada ambiente da sua casa. Tire suas dúvidas com nossa IA especialista!",
   ctaText: "Visitar Loja",

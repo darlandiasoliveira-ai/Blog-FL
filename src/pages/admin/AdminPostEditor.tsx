@@ -17,7 +17,7 @@ export default function AdminPostEditor() {
     content: '',
     imageUrl: '',
     date: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }),
-    author: 'Equipe FL Colchões',
+    author: 'Equipe FL Móveis e Colchões',
     category: '',
     published: true,
   });

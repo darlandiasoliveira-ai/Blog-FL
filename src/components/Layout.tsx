@@ -29,7 +29,7 @@ export default function Layout() {
                 <div className="bg-brand-600 text-white font-bold text-xl h-10 w-10 flex items-center justify-center rounded-lg shadow-sm group-hover:bg-brand-700 transition-colors">
                   FL
                 </div>
-                <span className="font-bold text-xl text-gray-900 tracking-tight">FL Móveis</span>
+                <span className="font-bold text-xl text-gray-900 tracking-tight">FL Móveis e Colchões</span>
               </Link>
             </div>
 
@@ -124,7 +124,7 @@ export default function Layout() {
               <div className="bg-gray-200 text-gray-500 font-bold text-lg h-8 w-8 flex items-center justify-center rounded-lg">
                 FL
               </div>
-              <span className="font-bold text-lg text-gray-500">FL Móveis</span>
+              <span className="font-bold text-lg text-gray-500">FL Móveis e Colchões</span>
             </div>
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {SITE_CONFIG.siteName}. Todos os direitos reservados.
