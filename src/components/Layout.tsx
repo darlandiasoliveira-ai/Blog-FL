@@ -26,21 +26,7 @@ export default function Layout() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center gap-3 group">
-                {/* CSS Logo mimicking the FL brand */}
-                <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-300 to-brand-500 opacity-80"></div>
-                  <span className="relative z-10 font-sans font-black text-xl text-accent-400 tracking-tighter" style={{ textShadow: '1px 1px 0px #b38f2d' }}>
-                    FL
-                  </span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-sans font-black text-[17px] text-brand-600 leading-none tracking-tight uppercase">
-                    FL
-                  </span>
-                  <span className="font-sans font-bold text-[9px] text-brand-600 leading-none tracking-[0.15em] uppercase mt-0.5">
-                    Móveis e Colchões
-                  </span>
-                </div>
+                <img src="/logo.png" alt="FL Móveis e Colchões" className="h-12 w-auto object-contain" />
               </Link>
             </div>
 
@@ -132,20 +118,7 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-brand-500 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-300 to-brand-500 opacity-80"></div>
-                <span className="relative z-10 font-sans font-black text-base text-accent-400 tracking-tighter" style={{ textShadow: '1px 1px 0px #b38f2d' }}>
-                  FL
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-sans font-black text-sm text-brand-600 leading-none tracking-tight uppercase">
-                  FL
-                </span>
-                <span className="font-sans font-bold text-[7px] text-brand-600 leading-none tracking-[0.15em] uppercase mt-0.5">
-                  Móveis e Colchões
-                </span>
-              </div>
+              <img src="/logo.png" alt="FL Móveis e Colchões" className="h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all" />
             </div>
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {SITE_CONFIG.siteName}. Todos os direitos reservados.
