@@ -26,6 +26,10 @@ service cloud.firestore {
     //   - author: string (required, max 100 chars)
     //   - category: string (required, max 50 chars)
     //   - published: boolean (required)
+    //   - seoTitle: string (optional, max 200 chars)
+    //   - slug: string (optional, max 200 chars)
+    //   - metaDescription: string (optional, max 500 chars)
+    //   - keywords: string (optional, max 200 chars)
     //   - createdAt: timestamp (required, immutable)
     //   - updatedAt: timestamp (required)
     //
@@ -76,7 +80,7 @@ service cloud.firestore {
     }
 
     function isValidPost(data) {
-      return hasOnlyAllowedFields(['title', 'excerpt', 'content', 'imageUrl', 'date', 'author', 'category', 'published', 'createdAt', 'updatedAt']) &&
+      return hasOnlyAllowedFields(['title', 'excerpt', 'content', 'imageUrl', 'date', 'author', 'category', 'published', 'seoTitle', 'slug', 'metaDescription', 'keywords', 'createdAt', 'updatedAt']) &&
              data.title is string && data.title.size() > 0 && data.title.size() <= 200 &&
              data.excerpt is string && data.excerpt.size() > 0 && data.excerpt.size() <= 500 &&
              data.content is string && data.content.size() > 0 && data.content.size() <= 100000 &&
@@ -85,6 +89,10 @@ service cloud.firestore {
              data.author is string && data.author.size() > 0 && data.author.size() <= 100 &&
              data.category is string && data.category.size() > 0 && data.category.size() <= 50 &&
              data.published is bool &&
+             (!('seoTitle' in data) || (data.seoTitle is string && data.seoTitle.size() <= 200)) &&
+             (!('slug' in data) || (data.slug is string && data.slug.size() <= 200)) &&
+             (!('metaDescription' in data) || (data.metaDescription is string && data.metaDescription.size() <= 500)) &&
+             (!('keywords' in data) || (data.keywords is string && data.keywords.size() <= 200)) &&
              data.createdAt is timestamp &&
              data.updatedAt is timestamp;
     }

@@ -4,7 +4,7 @@ import { SITE_CONFIG } from '../config';
 import Markdown from 'react-markdown';
 import { ArrowLeft, Calendar, User, ShoppingBag } from 'lucide-react';
 import { motion } from 'motion/react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { BlogPost } from '../types';
 
@@ -17,11 +17,28 @@ export default function Article() {
     const fetchPost = async () => {
       if (!id) return;
       try {
+        let postData = null;
+        let postId = '';
+
+        // First try to fetch by ID
         const docRef = doc(db, 'posts', id);
         const docSnap = await getDoc(docRef);
         
-        if (docSnap.exists() && docSnap.data().published) {
-          setPost({ id: docSnap.id, ...docSnap.data() } as BlogPost);
+        if (docSnap.exists()) {
+          postData = docSnap.data();
+          postId = docSnap.id;
+        } else {
+          // If not found by ID, try to fetch by slug
+          const q = query(collection(db, 'posts'), where('slug', '==', id), limit(1));
+          const querySnapshot = await getDocs(q);
+          if (!querySnapshot.empty) {
+            postData = querySnapshot.docs[0].data();
+            postId = querySnapshot.docs[0].id;
+          }
+        }
+        
+        if (postData && postData.published) {
+          setPost({ id: postId, ...postData } as BlogPost);
         }
       } catch (error) {
         console.error("Error fetching post:", error);
@@ -32,6 +49,39 @@ export default function Article() {
 
     fetchPost();
   }, [id]);
+
+  useEffect(() => {
+    const originalTitle = document.title;
+    
+    if (post) {
+      // Update SEO Title
+      document.title = post.seoTitle || `${post.title} | ${SITE_CONFIG.siteName}`;
+      
+      // Update Meta Description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', post.metaDescription || post.excerpt);
+
+      // Update Meta Keywords
+      if (post.keywords) {
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+          metaKeywords = document.createElement('meta');
+          metaKeywords.setAttribute('name', 'keywords');
+          document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', post.keywords);
+      }
+    }
+
+    return () => {
+      document.title = originalTitle;
+    };
+  }, [post]);
 
   if (loading) {
     return <div className="max-w-3xl mx-auto px-4 py-20 text-center">Carregando artigo...</div>;

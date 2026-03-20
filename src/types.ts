@@ -8,6 +8,10 @@ export interface BlogPost {
   author: string;
   category: string;
   published: boolean;
+  seoTitle?: string;
+  slug?: string;
+  metaDescription?: string;
+  keywords?: string;
   createdAt: any; // Firestore Timestamp
   updatedAt: any; // Firestore Timestamp
 }

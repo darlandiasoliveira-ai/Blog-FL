@@ -20,6 +20,10 @@ export default function AdminPostEditor() {
     author: 'Equipe FL Móveis e Colchões',
     category: '',
     published: true,
+    seoTitle: '',
+    slug: '',
+    metaDescription: '',
+    keywords: '',
   });
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
@@ -36,14 +40,18 @@ export default function AdminPostEditor() {
           if (docSnap.exists()) {
             const data = docSnap.data() as BlogPost;
             setFormData({
-              title: data.title,
-              excerpt: data.excerpt,
-              content: data.content,
-              imageUrl: data.imageUrl,
-              date: data.date,
-              author: data.author,
-              category: data.category,
-              published: data.published,
+              title: data.title || '',
+              excerpt: data.excerpt || '',
+              content: data.content || '',
+              imageUrl: data.imageUrl || '',
+              date: data.date || '',
+              author: data.author || '',
+              category: data.category || '',
+              published: data.published ?? true,
+              seoTitle: data.seoTitle || '',
+              slug: data.slug || '',
+              metaDescription: data.metaDescription || '',
+              keywords: data.keywords || '',
             });
           }
         } catch (error) {
@@ -268,7 +276,57 @@ export default function AdminPostEditor() {
             />
           </div>
 
-          <div className="col-span-2">
+          <div className="col-span-2 border-t border-gray-200 pt-6 mt-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Informações Técnicas (SEO)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Título da Página (SEO Title)</label>
+                <input
+                  type="text"
+                  name="seoTitle"
+                  value={formData.seoTitle}
+                  onChange={handleChange}
+                  placeholder="Ex: Como escolher o colchão ideal? | FL Colchões"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Slug (URL)</label>
+                <input
+                  type="text"
+                  name="slug"
+                  value={formData.slug}
+                  onChange={handleChange}
+                  placeholder="Ex: como-escolher-o-colchao-ideal"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Palavras-chave (Keywords)</label>
+                <input
+                  type="text"
+                  name="keywords"
+                  value={formData.keywords}
+                  onChange={handleChange}
+                  placeholder="Ex: Colchão ideal, FL Colchões, comprar colchão"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Meta Descrição</label>
+                <textarea
+                  name="metaDescription"
+                  rows={2}
+                  value={formData.metaDescription}
+                  onChange={handleChange}
+                  placeholder="Ex: Aprenda a escolher o colchão perfeito..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-2 border-t border-gray-200 pt-6 mt-6">
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-gray-700">Conteúdo (Markdown)</label>
               <label className={`cursor-pointer text-sm font-medium flex items-center gap-1 px-3 py-1.5 rounded-md transition-colors ${uploadingContentImage ? 'text-gray-400 bg-gray-50 cursor-not-allowed' : 'text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100'}`}>

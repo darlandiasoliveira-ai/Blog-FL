@@ -142,7 +142,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col h-full"
                 >
-                  <Link to={`/blog/${post.id}`} className="block aspect-[16/10] overflow-hidden">
+                  <Link to={`/blog/${post.slug || post.id}`} className="block aspect-[16/10] overflow-hidden">
                     <img 
                       src={post.imageUrl} 
                       alt={post.title}
@@ -157,7 +157,7 @@ export default function Home() {
                       </span>
                       <span className="text-xs text-gray-500">{post.date}</span>
                     </div>
-                    <Link to={`/blog/${post.id}`} className="block group">
+                    <Link to={`/blog/${post.slug || post.id}`} className="block group">
                       <h3 className="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
                         {post.title}
                       </h3>
@@ -167,7 +167,7 @@ export default function Home() {
                     </p>
                     <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-900">{post.author}</span>
-                      <Link to={`/blog/${post.id}`} className="text-brand-600 hover:text-brand-800">
+                      <Link to={`/blog/${post.slug || post.id}`} className="text-brand-600 hover:text-brand-800">
                         <ArrowRight className="h-5 w-5" />
                       </Link>
                     </div>
