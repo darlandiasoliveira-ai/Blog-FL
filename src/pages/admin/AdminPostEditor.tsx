@@ -5,6 +5,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../firebase';
 import { BlogPost } from '../../types';
 import { Save, ArrowLeft, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
+import TurndownService from 'turndown';
 
 export default function AdminPostEditor() {
   const { id } = useParams<{ id: string }>();
@@ -130,6 +131,30 @@ export default function AdminPostEditor() {
         setUploadingContentImage(false);
       }
     );
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const html = e.clipboardData.getData('text/html');
+    if (html) {
+      e.preventDefault();
+      const turndownService = new TurndownService({
+        headingStyle: 'atx',
+        codeBlockStyle: 'fenced'
+      });
+      const markdown = turndownService.turndown(html);
+      
+      const target = e.target as HTMLTextAreaElement;
+      const start = target.selectionStart;
+      const end = target.selectionEnd;
+      
+      const newContent = formData.content.substring(0, start) + markdown + formData.content.substring(end);
+      
+      setFormData(prev => ({ ...prev, content: newContent }));
+      
+      setTimeout(() => {
+        target.selectionStart = target.selectionEnd = start + markdown.length;
+      }, 0);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -351,6 +376,7 @@ export default function AdminPostEditor() {
               rows={15}
               value={formData.content}
               onChange={handleChange}
+              onPaste={handlePaste}
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500 font-mono text-sm"
             />
           </div>
