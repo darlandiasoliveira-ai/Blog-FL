@@ -144,7 +144,18 @@ export default function Article() {
       {/* Content */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="markdown-body text-lg">
-          <Markdown>{post.content}</Markdown>
+          <Markdown
+            components={{
+              img: ({node, ...props}) => <img {...props} referrerPolicy="no-referrer" />,
+              a: ({node, href, children, ...props}) => (
+                <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                  {children}
+                </a>
+              )
+            }}
+          >
+            {post.content}
+          </Markdown>
         </div>
         
         {/* Call to Action Box */}

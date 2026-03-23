@@ -242,7 +242,7 @@ export default function AdminPostEditor() {
               {/* Image Preview */}
               {formData.imageUrl && (
                 <div className="relative w-full max-w-md aspect-video rounded-lg overflow-hidden border border-gray-200">
-                  <img src={formData.imageUrl} alt="Capa" className="w-full h-full object-cover" />
+                  <img src={formData.imageUrl} alt="Capa" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </div>
               )}
               
