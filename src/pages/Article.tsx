@@ -20,24 +20,70 @@ export default function Article() {
         let postData = null;
         let postId = '';
 
+        // Clean up ID (remove trailing slashes and spaces)
+        const cleanId = id.replace(/\/$/, '').trim();
+        const decodedId = decodeURIComponent(cleanId);
+
         // First try to fetch by ID
-        const docRef = doc(db, 'posts', id);
-        const docSnap = await getDoc(docRef);
+        const docRef = doc(db, 'posts', cleanId);
+        try {
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            postData = docSnap.data();
+            postId = docSnap.id;
+          }
+        } catch (e) {
+          // If getDoc fails (e.g., permission denied because the ID doesn't exist and rules fail), 
+          // we just ignore it and move on to the slug query.
+          console.log("getDoc by ID failed, falling back to slug query");
+        }
         
-        if (docSnap.exists()) {
-          postData = docSnap.data();
-          postId = docSnap.id;
-        } else {
+        if (!postData) {
           // If not found by ID, try to fetch by slug
-          const q = query(collection(db, 'posts'), where('slug', '==', id), limit(1));
-          const querySnapshot = await getDocs(q);
+          // Note: We must include where('published', '==', true) to satisfy Firestore security rules for public users
+          let q = query(
+            collection(db, 'posts'), 
+            where('slug', '==', cleanId), 
+            where('published', '==', true),
+            limit(1)
+          );
+          let querySnapshot = await getDocs(q);
+          
+          if (querySnapshot.empty && cleanId !== decodedId) {
+            // Try decoded slug just in case
+            q = query(
+              collection(db, 'posts'), 
+              where('slug', '==', decodedId), 
+              where('published', '==', true),
+              limit(1)
+            );
+            querySnapshot = await getDocs(q);
+          }
+
+          // If still empty, try without the published filter (in case the user is an admin viewing a draft)
+          if (querySnapshot.empty) {
+            try {
+              q = query(collection(db, 'posts'), where('slug', '==', cleanId), limit(1));
+              querySnapshot = await getDocs(q);
+              
+              if (querySnapshot.empty && cleanId !== decodedId) {
+                q = query(collection(db, 'posts'), where('slug', '==', decodedId), limit(1));
+                querySnapshot = await getDocs(q);
+              }
+            } catch (e) {
+              // This will fail for non-admins due to security rules, which is expected
+              console.log("Draft query rejected by security rules (expected for non-admins)");
+            }
+          }
+
           if (!querySnapshot.empty) {
             postData = querySnapshot.docs[0].data();
             postId = querySnapshot.docs[0].id;
           }
         }
         
-        if (postData && postData.published) {
+        // Treat undefined published as true (for older posts)
+        if (postData && postData.published !== false) {
           setPost({ id: postId, ...postData } as BlogPost);
         }
       } catch (error) {
@@ -131,7 +177,7 @@ export default function Article() {
 
       {/* Hero Image */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="aspect-[21/9] rounded-2xl overflow-hidden shadow-lg">
+        <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
           <img 
             src={post.imageUrl} 
             alt={post.title}
@@ -148,7 +194,18 @@ export default function Article() {
             components={{
               img: ({node, ...props}) => <img {...props} referrerPolicy="no-referrer" />,
               a: ({node, href, children, ...props}) => (
-                <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                <a 
+                  {...props} 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (href && (href.startsWith('http') || href.startsWith('//'))) {
+                      e.preventDefault();
+                      window.open(href, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
+                >
                   {children}
                 </a>
               )

@@ -61,7 +61,7 @@ export default function Blog() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col h-full"
             >
-              <Link to={`/blog/${post.slug || post.id}`} className="block aspect-[16/10] overflow-hidden">
+              <Link to={`/blog/${post.slug || post.id}`} className="block aspect-video overflow-hidden">
                 <img 
                   src={post.imageUrl} 
                   alt={post.title}

@@ -99,7 +99,28 @@ export default function Assistant() {
                   <p className="whitespace-pre-wrap">{message.content}</p>
                 ) : (
                   <div className="markdown-body text-sm sm:text-base">
-                    <Markdown>{message.content}</Markdown>
+                    <Markdown
+                      components={{
+                        a: ({node, href, children, ...props}) => (
+                          <a 
+                            {...props} 
+                            href={href} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            onClick={(e) => {
+                              if (href && (href.startsWith('http') || href.startsWith('//'))) {
+                                e.preventDefault();
+                                window.open(href, '_blank', 'noopener,noreferrer');
+                              }
+                            }}
+                          >
+                            {children}
+                          </a>
+                        )
+                      }}
+                    >
+                      {message.content}
+                    </Markdown>
                   </div>
                 )}
               </div>
