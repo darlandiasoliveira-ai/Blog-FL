@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp, collection } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -31,6 +31,7 @@ export default function AdminPostEditor() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingContentImage, setUploadingContentImage] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (isEditing) {
@@ -124,10 +125,35 @@ export default function AdminPostEditor() {
       async () => {
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         const imageMarkdown = `\n![${file.name}](${downloadURL})\n`;
-        setFormData(prev => ({
-          ...prev,
-          content: prev.content + imageMarkdown
-        }));
+        
+        const textarea = contentTextareaRef.current;
+        if (textarea) {
+          const startPos = textarea.selectionStart;
+          const endPos = textarea.selectionEnd;
+          
+          setFormData(prev => {
+            const newContent = prev.content.substring(0, startPos) + imageMarkdown + prev.content.substring(endPos);
+            
+            // Restore cursor position after state update
+            setTimeout(() => {
+              if (contentTextareaRef.current) {
+                contentTextareaRef.current.focus();
+                contentTextareaRef.current.selectionStart = contentTextareaRef.current.selectionEnd = startPos + imageMarkdown.length;
+              }
+            }, 0);
+            
+            return {
+              ...prev,
+              content: newContent
+            };
+          });
+        } else {
+          setFormData(prev => ({
+            ...prev,
+            content: prev.content + imageMarkdown
+          }));
+        }
+
         setUploadingContentImage(false);
       }
     );
@@ -371,6 +397,7 @@ export default function AdminPostEditor() {
               </label>
             </div>
             <textarea
+              ref={contentTextareaRef}
               name="content"
               required
               rows={15}

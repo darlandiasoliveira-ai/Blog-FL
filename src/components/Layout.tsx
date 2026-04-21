@@ -26,10 +26,18 @@ export default function Layout() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center gap-3 group">
-                <div className="bg-brand-600 text-white font-bold text-xl h-10 w-10 flex items-center justify-center rounded-lg shadow-sm group-hover:bg-brand-700 transition-colors">
-                  FL
-                </div>
-                <span className="font-bold text-xl text-gray-900 tracking-tight">FL Móveis e Colchões</span>
+                {SITE_CONFIG.logoUrl ? (
+                  <div className="relative h-10 px-2 rounded bg-gray-900 flex items-center justify-center overflow-hidden">
+                     <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-8 object-contain" />
+                  </div>
+                ) : (
+                  <>
+                    <div className="bg-brand-600 text-white font-bold text-xl h-10 w-10 flex items-center justify-center rounded-lg shadow-sm group-hover:bg-brand-700 transition-colors">
+                      FL
+                    </div>
+                    <span className="font-bold text-xl text-gray-900 tracking-tight">{SITE_CONFIG.salesSiteName}</span>
+                  </>
+                )}
               </Link>
             </div>
 
@@ -121,10 +129,18 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <div className="bg-gray-200 text-gray-500 font-bold text-lg h-8 w-8 flex items-center justify-center rounded-lg">
-                FL
-              </div>
-              <span className="font-bold text-lg text-gray-500">FL Móveis e Colchões</span>
+              {SITE_CONFIG.logoUrl ? (
+                <div className="relative h-8 px-2 rounded bg-gray-900 flex items-center justify-center overflow-hidden">
+                   <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-5 object-contain opacity-70" />
+                </div>
+              ) : (
+                <>
+                  <div className="bg-gray-200 text-gray-500 font-bold text-lg h-8 w-8 flex items-center justify-center rounded-lg">
+                    FL
+                  </div>
+                  <span className="font-bold text-lg text-gray-500">{SITE_CONFIG.salesSiteName}</span>
+                </>
+              )}
             </div>
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {SITE_CONFIG.siteName}. Todos os direitos reservados.

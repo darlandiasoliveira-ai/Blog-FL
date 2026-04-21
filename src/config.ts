@@ -12,6 +12,9 @@ export const SITE_CONFIG = {
   // Qual é o nome da sua loja/marca?
   salesSiteName: "FL Móveis e Colchões",
   
+  // Imagem do logotipo (pode ser um link ou caminho local da pasta public)
+  logoUrl: "/logo-branca.png?v=1",
+  
   // ==========================================
   // TEXTOS DO SITE
   // ==========================================
