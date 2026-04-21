@@ -1,3 +1,5 @@
+import logoImage from './assets/logo-branca.png';
+
 export const SITE_CONFIG = {
   // ==========================================
   // CONFIGURAÇÕES PRINCIPAIS (ALTERE AQUI)
@@ -12,8 +14,8 @@ export const SITE_CONFIG = {
   // Qual é o nome da sua loja/marca?
   salesSiteName: "FL Móveis e Colchões",
   
-  // Imagem do logotipo (pode ser um link ou caminho local da pasta public)
-  logoUrl: "/logo-branca.png?v=1",
+  // Imagem do logotipo
+  logoUrl: logoImage,
   
   // ==========================================
   // TEXTOS DO SITE
