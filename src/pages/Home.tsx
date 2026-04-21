@@ -7,9 +7,17 @@ import { collection, query, where, orderBy, limit, getDocs } from 'firebase/fire
 import { db } from '../firebase';
 import { BlogPost } from '../types';
 
+const HERO_IMAGES = [
+  "https://cdn.vendizap.com/vendizap-produtos/60d3996443ccf53a12a7294bae827d08.webp", // Produto 1
+  "https://cdn.vendizap.com/vendizap-produtos/6880a9570ca411d3b2b1ac5db2a5ce42.webp", // Produto 2
+  "https://cdn.vendizap.com/vendizap-produtos/e0eedcfbb8ccac591c81d6cad08bce00.webp", // Produto 3
+  "https://cdn.vendizap.com/vendizap-produtos/81b9398805f386ff597ecc7410d5076d.webp", // Produto 4
+];
+
 export default function Home() {
   const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,6 +42,13 @@ export default function Home() {
     };
 
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4000); // Muda a foto a cada 4 segundos
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -84,13 +99,18 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://picsum.photos/seed/bedroom-furniture/1200/900" 
-                  alt={SITE_CONFIG.niche}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+                {HERO_IMAGES.map((src, index) => (
+                  <img 
+                    key={src}
+                    src={src} 
+                    alt={SITE_CONFIG.niche}
+                    className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                    referrerPolicy="no-referrer"
+                  />
+                ))}
               </div>
               {/* Decorative element */}
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-brand-100 max-w-xs">
