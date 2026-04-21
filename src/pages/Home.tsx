@@ -99,13 +99,13 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-100">
                 {HERO_IMAGES.map((src, index) => (
                   <img 
                     key={src}
                     src={src} 
                     alt={SITE_CONFIG.niche}
-                    className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                    className={`absolute top-0 left-0 w-full h-full object-contain p-6 transition-opacity duration-1000 ${
                       index === currentImageIndex ? "opacity-100" : "opacity-0"
                     }`}
                     referrerPolicy="no-referrer"
