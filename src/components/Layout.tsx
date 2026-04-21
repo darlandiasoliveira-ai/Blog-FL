@@ -27,8 +27,8 @@ export default function Layout() {
             <div className="flex items-center">
               <Link to="/" className="flex items-center gap-3 group">
                 {SITE_CONFIG.logoUrl ? (
-                  <div className="relative h-10 px-2 rounded bg-gray-900 flex items-center justify-center overflow-hidden">
-                     <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-8 object-contain" />
+                  <div className="relative h-12 flex items-center justify-center overflow-hidden">
+                     <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-10 object-contain drop-shadow-sm" />
                   </div>
                 ) : (
                   <>
@@ -130,8 +130,8 @@ export default function Layout() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               {SITE_CONFIG.logoUrl ? (
-                <div className="relative h-8 px-2 rounded bg-gray-900 flex items-center justify-center overflow-hidden">
-                   <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-5 object-contain opacity-70" />
+                <div className="relative h-10 flex items-center justify-center overflow-hidden">
+                   <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="h-8 object-contain" />
                 </div>
               ) : (
                 <>
