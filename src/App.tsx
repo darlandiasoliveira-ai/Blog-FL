@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import Assistant from './pages/Assistant';
+import BioLinks from './pages/BioLinks';
+import Sobre from './pages/Sobre';
 
 // Admin Pages
 import AdminLayout from './components/AdminLayout';
@@ -22,13 +24,17 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
+          {/* Public Routes with Main Layout */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:id" element={<Article />} />
             <Route path="assistente" element={<Assistant />} />
+            <Route path="sobre" element={<Sobre />} />
           </Route>
+
+          {/* Standalone Mobile Landing Page (Link in Bio) */}
+          <Route path="/links" element={<BioLinks />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />

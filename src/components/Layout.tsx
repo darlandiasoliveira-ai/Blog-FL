@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { SITE_CONFIG } from '../config';
-import { Home as HomeIcon, MessageSquare, BookOpen, ShoppingBag, Menu, X } from 'lucide-react';
+import { Home as HomeIcon, MessageSquare, BookOpen, ShoppingBag, Menu, X, Info, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Layout() {
@@ -9,6 +9,8 @@ export default function Layout() {
 
   const navLinks = [
     { name: 'Início', path: '/', icon: HomeIcon },
+    { name: 'Sobre', path: '/sobre', icon: Info },
+    { name: 'Nossos Links', path: '/links', icon: LinkIcon },
     { name: 'Artigos', path: '/blog', icon: BookOpen },
     { name: 'Assistente IA', path: '/assistente', icon: MessageSquare },
   ];
