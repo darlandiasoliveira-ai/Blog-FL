@@ -1,6 +1,7 @@
 import { MapPin, Phone, MessageCircle, ShoppingBag, Tag, Globe, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '../config';
 import { motion } from 'motion/react';
+import SEO from '../components/SEO';
 
 export default function BioLinks() {
   // ==========================================
@@ -40,7 +41,11 @@ export default function BioLinks() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center w-full">
-      {/* Container "Mobile-first" - Mantém a página parecendo um celular no computador */}
+      <SEO 
+        title="Links Oficiais" 
+        description="Acesse nosso catálogo, promoções do dia e fale direto com nossos vendedores no WhatsApp. Tudo o que você precisa da FL Móveis Aracaju em um só lugar."
+      />
+      {/* Container "Mobile-first" */}
       <div className="w-full max-w-md bg-white min-h-screen shadow-2xl relative px-6 py-10 flex flex-col items-center">
         
         {/* Foto de Perfil / Logo */}

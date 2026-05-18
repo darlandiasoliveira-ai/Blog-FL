@@ -1,10 +1,15 @@
 import { motion } from 'motion/react';
 import { SITE_CONFIG } from '../config';
 import { MapPin, Phone, Mail, Award, Clock, MessageCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Sobre() {
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Sobre Nós" 
+        description="Conheça a história da FL Móveis e Colchões. Tradição em qualidade e conforto em Aracaju e Nossa Senhora do Socorro. Visite nossas lojas."
+      />
       {/* Hero Section */}
       <section className="bg-brand-50 py-20 border-b border-brand-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

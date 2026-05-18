@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { BlogPost } from '../types';
+import SEO from '../components/SEO';
 
 const HERO_IMAGES = [
   "https://cdn.vendizap.com/vendizap-produtos/60d3996443ccf53a12a7294bae827d08.webp", // Produto 1
@@ -53,6 +54,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      <SEO 
+        title="Início" 
+        description="Loja de móveis e colchões em Aracaju e Socorro. Encontre os melhores estofados, camas, guarda-roupas e armários de cozinha com entrega rápida."
+      />
       {/* Hero Section */}
       <section className="relative bg-white overflow-hidden border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-40">
