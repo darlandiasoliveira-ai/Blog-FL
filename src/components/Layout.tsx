@@ -74,12 +74,22 @@ export default function Layout() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center md:hidden">
+            <div className="flex items-center gap-2 md:hidden">
+              <a
+                href={SITE_CONFIG.salesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-accent-400 hover:bg-accent-500 text-brand-900 px-3 py-1.5 rounded-md text-xs font-bold transition-colors shadow-sm"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" />
+                Visitar Loja
+              </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-500 hover:text-gray-900 p-2"
+                className="flex items-center gap-1 text-gray-600 hover:text-brand-600 px-2 py-1.5 bg-gray-100 hover:bg-brand-50 rounded-md transition-colors"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                <span className="text-xs font-bold uppercase tracking-wider">{isMobileMenuOpen ? 'Fechar' : 'Menu'}</span>
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
           </div>
