@@ -9,10 +9,11 @@ import { BlogPost } from '../types';
 import SEO from '../components/SEO';
 
 const HERO_IMAGES = [
-  "https://cdn.vendizap.com/vendizap-produtos/60d3996443ccf53a12a7294bae827d08.webp", // Produto 1
-  "https://cdn.vendizap.com/vendizap-produtos/6880a9570ca411d3b2b1ac5db2a5ce42.webp", // Produto 2
-  "https://cdn.vendizap.com/vendizap-produtos/e0eedcfbb8ccac591c81d6cad08bce00.webp", // Produto 3
-  "https://cdn.vendizap.com/vendizap-produtos/81b9398805f386ff597ecc7410d5076d.webp", // Produto 4
+  "https://cdn.vendizap.com/vendizap-produtos/e5fa6c7137218fc4bdc06147c1e66050.webp",
+  "https://cdn.vendizap.com/vendizap-produtos/931b88925fc829cf716831a1456255c6.webp",
+  "https://cdn.vendizap.com/vendizap-produtos/929b771e82a4447cd1955fb40cbee2a5.webp",
+  "https://cdn.vendizap.com/vendizap-produtos/3140069df75aef47dfeb47b4e92d6621.webp",
+  "https://cdn.vendizap.com/vendizap-produtos/ea9f179ed7303958d4f02a81255c5203.webp",
 ];
 
 export default function Home() {
