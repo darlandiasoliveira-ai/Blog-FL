@@ -40,20 +40,20 @@ export default function BioLinks() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center w-full">
+    <div className="flex justify-center w-full py-12 px-4">
       <SEO 
         title="Links Oficiais" 
         description="Acesse nosso catálogo, promoções do dia e fale direto com nossos vendedores no WhatsApp. Tudo o que você precisa da FL Móveis Aracaju em um só lugar."
       />
       {/* Container "Mobile-first" */}
-      <div className="w-full max-w-md bg-white min-h-screen shadow-2xl relative px-6 py-10 flex flex-col items-center">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-3xl relative px-6 py-10 flex flex-col items-center border border-gray-100">
         
         {/* Foto de Perfil / Logo */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-28 h-28 rounded-full shadow-lg border-4 border-white overflow-hidden mb-4 bg-brand-50 flex items-center justify-center p-2"
+          className="w-28 h-28 rounded-full shadow-lg border-4 border-brand-800 overflow-hidden mb-4 bg-brand-900 flex items-center justify-center p-2"
         >
           {SITE_CONFIG.logoUrl ? (
             <img src={SITE_CONFIG.logoUrl} alt={SITE_CONFIG.salesSiteName} className="w-full h-full object-contain object-center" />
@@ -69,7 +69,7 @@ export default function BioLinks() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-center mb-8"
         >
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">{SITE_CONFIG.salesSiteName}</h1>
+          <h1 className="text-2xl font-bold text-brand-900 mb-2">{SITE_CONFIG.salesSiteName}</h1>
           <p className="text-gray-600 text-sm">O melhor para sua casa. Colchões, Estofados e Móveis. Entregamos conforto e qualidade!</p>
         </motion.div>
 
@@ -86,17 +86,17 @@ export default function BioLinks() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 + (index * 0.1) }}
-                className={`w-full flex items-center justify-between p-4 rounded-xl shadow-sm border transition-all duration-300 hover:scale-[1.02] active:scale-95 ${
+                className={`w-full flex items-center justify-between p-4 rounded-xl shadow-[0_4px_10px_rgba(0,0,0,0.03)] border transition-all duration-300 hover:scale-[1.02] active:scale-95 ${
                   link.highlight 
-                    ? 'bg-brand-600 text-white border-brand-600 hover:bg-brand-700 hover:shadow-md' 
-                    : 'bg-white text-gray-800 border-gray-200 hover:border-brand-300 hover:bg-brand-50'
+                    ? 'bg-brand-800 text-white border-brand-700 hover:bg-brand-700 hover:shadow-md' 
+                    : 'bg-white text-gray-800 border-gray-200 hover:border-accent-400 hover:bg-brand-50'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-5 h-5 ${link.highlight ? 'text-white' : 'text-brand-600'}`} />
+                  <Icon className={`w-5 h-5 ${link.highlight ? 'text-accent-400' : 'text-brand-800'}`} />
                   <span className="font-semibold text-sm">{link.title}</span>
                 </div>
-                <ArrowRight className={`w-4 h-4 ${link.highlight ? 'text-white/80' : 'text-gray-400'}`} />
+                <ArrowRight className={`w-4 h-4 ${link.highlight ? 'text-accent-400' : 'text-gray-400'}`} />
               </motion.a>
             )
           })}

@@ -36,18 +36,20 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-          Artigos e Guias
-        </h1>
-        <p className="text-lg text-gray-600">
-          Explore nosso conteúdo especializado sobre {SITE_CONFIG.niche.toLowerCase()}. 
-          Aprenda, descubra e aprimore seus conhecimentos.
-        </p>
+    <div className="flex flex-col">
+      <div className="bg-brand-900 border-b border-brand-800 text-white py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+            Artigos e Guias
+          </h1>
+          <p className="text-lg text-brand-100">
+            Explore nosso conteúdo especializado sobre {SITE_CONFIG.niche.toLowerCase()}. 
+            Aprenda, descubra e aprimore seus conhecimentos.
+          </p>
+        </div>
       </div>
-
-      {loading ? (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full">
+        {loading ? (
         <div className="text-center py-20 text-gray-500">Carregando artigos...</div>
       ) : posts.length === 0 ? (
         <div className="text-center py-20 text-gray-500">Nenhum artigo publicado ainda.</div>
@@ -95,6 +97,7 @@ export default function Blog() {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

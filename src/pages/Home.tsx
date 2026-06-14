@@ -60,8 +60,9 @@ export default function Home() {
         description="Loja de móveis e colchões em Aracaju e Socorro. Encontre os melhores estofados, camas, guarda-roupas e armários de cozinha com entrega rápida."
       />
       {/* Hero Section */}
-      <section className="relative bg-white overflow-hidden border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-40">
+      <section className="relative bg-brand-900 border-b border-brand-800 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-40 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -69,20 +70,20 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-sm font-bold mb-6 border border-brand-100">
-                <Sparkles className="h-4 w-4 text-accent-500" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-800 text-accent-400 text-sm font-bold mb-6 border border-brand-700">
+                <Sparkles className="h-4 w-4 text-accent-400" />
                 <span>Especialistas em {SITE_CONFIG.niche}</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight mb-6">
                 {SITE_CONFIG.heroTitle}
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-brand-100 mb-8 leading-relaxed">
                 {SITE_CONFIG.heroSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/assistente"
-                  className="inline-flex justify-center items-center gap-2 bg-accent-400 hover:bg-accent-500 text-brand-900 px-8 py-3.5 rounded-full text-base font-bold transition-colors shadow-lg shadow-accent-200"
+                  className="inline-flex justify-center items-center gap-2 bg-accent-500 hover:bg-accent-400 text-brand-900 px-8 py-3.5 rounded-full text-base font-bold transition-colors shadow-[0_0_20px_rgba(242,192,19,0.3)] hover:shadow-[0_0_25px_rgba(242,192,19,0.5)]"
                 >
                   <Sparkles className="h-5 w-5" />
                   Perguntar à IA
@@ -91,7 +92,7 @@ export default function Home() {
                   href={SITE_CONFIG.salesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center gap-2 bg-white border-2 border-brand-600 text-brand-600 hover:bg-brand-50 px-8 py-3.5 rounded-full text-base font-bold transition-colors"
+                  className="inline-flex justify-center items-center gap-2 bg-brand-800 border-2 border-brand-700 text-white hover:bg-brand-700 hover:border-brand-600 px-8 py-3.5 rounded-full text-base font-bold transition-colors"
                 >
                   {SITE_CONFIG.ctaText}
                   <ArrowRight className="h-5 w-5" />
@@ -105,7 +106,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-100">
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-white/5 border border-brand-800 backdrop-blur-sm">
                 {HERO_IMAGES.map((src, index) => (
                   <img 
                     key={src}
@@ -119,14 +120,14 @@ export default function Home() {
                 ))}
               </div>
               {/* Decorative element */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-brand-100 max-w-xs">
+              <div className="absolute -bottom-6 -left-6 bg-brand-800 p-6 rounded-2xl shadow-xl border border-brand-700 max-w-xs">
                 <div className="flex items-start gap-4">
-                  <div className="bg-brand-50 p-3 rounded-full text-brand-600">
+                  <div className="bg-brand-900 p-3 rounded-full text-accent-400 shadow-inner">
                     <MessageSquare className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-brand-900">Dúvidas sobre produtos?</p>
-                    <p className="text-xs text-gray-500 mt-1">Nossa IA recomenda o melhor para você.</p>
+                    <p className="text-sm font-bold text-white">Dúvidas sobre produtos?</p>
+                    <p className="text-xs text-brand-200 mt-1">Nossa IA recomenda o melhor para você.</p>
                   </div>
                 </div>
               </div>

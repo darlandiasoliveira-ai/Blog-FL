@@ -115,7 +115,7 @@ export default function Article() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white"
+      className="bg-gray-50 pb-20"
     >
       <SEO 
         title={post.seoTitle || post.title}
@@ -124,33 +124,35 @@ export default function Article() {
         article={true}
       />
       {/* Article Header */}
-      <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
-        <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 mb-8 transition-colors">
-          <ArrowLeft className="h-4 w-4" />
-          Voltar para Artigos
-        </Link>
-        <div className="mb-6">
-          <span className="text-sm font-bold uppercase tracking-widest text-brand-600">
-            {post.category}
-          </span>
-        </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight mb-8">
-          {post.title}
-        </h1>
-        <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
-          <div className="flex items-center gap-2">
-            <User className="h-4 w-4" />
-            {post.author}
+      <div className="bg-brand-900 border-b border-brand-800 text-white">
+        <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 text-center">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-brand-200 hover:text-accent-400 mb-8 transition-colors">
+            <ArrowLeft className="h-4 w-4" />
+            Voltar para Artigos
+          </Link>
+          <div className="mb-6">
+            <span className="text-sm font-bold uppercase tracking-widest text-accent-400 bg-brand-800 px-3 py-1 rounded-full border border-brand-700">
+              {post.category}
+            </span>
           </div>
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
-            {post.date}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight mb-8">
+            {post.title}
+          </h1>
+          <div className="flex items-center justify-center gap-6 text-sm text-brand-100">
+            <div className="flex items-center gap-2">
+              <User className="h-4 w-4" />
+              {post.author}
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4" />
+              {post.date}
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       {/* Hero Image */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10 mb-16">
         <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
           <img 
             src={post.imageUrl} 
@@ -162,7 +164,7 @@ export default function Article() {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
         
         {post.aiSummary && (
           <div className="bg-brand-50 border border-brand-100 p-6 mb-10 rounded-2xl">

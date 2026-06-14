@@ -31,10 +31,8 @@ export default function App() {
             <Route path="blog/:id" element={<Article />} />
             <Route path="assistente" element={<Assistant />} />
             <Route path="sobre" element={<Sobre />} />
+            <Route path="links" element={<BioLinks />} />
           </Route>
-
-          {/* Standalone Mobile Landing Page (Link in Bio) */}
-          <Route path="/links" element={<BioLinks />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />

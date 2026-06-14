@@ -66,12 +66,12 @@ export default function Assistant() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 h-[calc(100vh-4rem)] flex flex-col">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center p-3 bg-brand-50 rounded-full mb-4 text-accent-500 border border-brand-100">
+      <div className="text-center mb-8 pt-8">
+        <div className="inline-flex items-center justify-center p-4 bg-brand-800 rounded-full mb-4 text-accent-400 shadow-[0_0_15px_rgba(242,192,19,0.3)]">
           <Sparkles className="h-8 w-8" />
         </div>
-        <h1 className="text-3xl font-serif font-bold text-gray-900 mb-2">Assistente Especialista</h1>
-        <p className="text-gray-600">Tire suas dúvidas sobre {SITE_CONFIG.niche.toLowerCase()} e encontre os melhores produtos.</p>
+        <h1 className="text-3xl font-serif font-bold text-brand-900 mb-2">Assistente Especialista</h1>
+        <p className="text-brand-800">Tire suas dúvidas sobre {SITE_CONFIG.niche.toLowerCase()} e encontre os melhores produtos.</p>
       </div>
 
       <div className="flex-grow bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
@@ -85,15 +85,15 @@ export default function Assistant() {
               className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {message.role === 'assistant' && (
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-500 flex items-center justify-center text-accent-400 shadow-sm">
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-800 flex items-center justify-center text-accent-400 shadow-sm">
                   <Bot className="h-6 w-6" />
                 </div>
               )}
               
               <div className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-5 py-4 ${
                 message.role === 'user' 
-                  ? 'bg-brand-600 text-white rounded-tr-none shadow-sm' 
-                  : 'bg-white border border-gray-100 text-gray-800 rounded-tl-none shadow-sm'
+                  ? 'bg-brand-800 text-white rounded-tr-none shadow-sm' 
+                  : 'bg-white border border-brand-100 text-brand-900 rounded-tl-none shadow-sm'
               }`}>
                 {message.role === 'user' ? (
                   <p className="whitespace-pre-wrap">{message.content}</p>
@@ -135,7 +135,7 @@ export default function Assistant() {
           
           {isLoading && (
             <div className="flex gap-4 justify-start">
-              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-500 flex items-center justify-center text-accent-400 shadow-sm">
+              <div className="flex-shrink-0 h-10 w-10 rounded-full bg-brand-800 flex items-center justify-center text-accent-400 shadow-sm">
                 <Bot className="h-6 w-6" />
               </div>
               <div className="bg-white border border-gray-100 shadow-sm rounded-2xl rounded-tl-none px-5 py-4 flex items-center gap-2 text-gray-500">

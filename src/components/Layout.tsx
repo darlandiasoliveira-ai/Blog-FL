@@ -23,7 +23,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navigation */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-brand-900 border-b border-brand-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -34,10 +34,10 @@ export default function Layout() {
                   </div>
                 ) : (
                   <>
-                    <div className="bg-brand-600 text-white font-bold text-xl h-10 w-10 flex items-center justify-center rounded-lg shadow-sm group-hover:bg-brand-700 transition-colors">
+                    <div className="bg-brand-800 text-accent-400 font-bold text-xl h-10 w-10 flex items-center justify-center rounded-lg shadow-sm group-hover:bg-brand-700 transition-colors border border-brand-700">
                       FL
                     </div>
-                    <span className="font-bold text-xl text-gray-900 tracking-tight">{SITE_CONFIG.salesSiteName}</span>
+                    <span className="font-bold text-xl text-white tracking-tight">{SITE_CONFIG.salesSiteName}</span>
                   </>
                 )}
               </Link>
@@ -53,8 +53,8 @@ export default function Layout() {
                     to={link.path}
                     className={`flex items-center gap-2 text-sm font-medium transition-colors ${
                       isActive(link.path)
-                        ? 'text-brand-600'
-                        : 'text-gray-600 hover:text-brand-600'
+                        ? 'text-accent-400'
+                        : 'text-brand-100 hover:text-accent-400'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -86,7 +86,7 @@ export default function Layout() {
               </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex items-center gap-1 text-gray-600 hover:text-brand-600 px-2 py-1.5 bg-gray-100 hover:bg-brand-50 rounded-md transition-colors"
+                className="flex items-center gap-1 text-brand-100 hover:text-accent-400 px-2 py-1.5 bg-brand-800 hover:bg-brand-700 rounded-md transition-colors"
               >
                 <span className="text-xs font-bold uppercase tracking-wider">{isMobileMenuOpen ? 'Fechar' : 'Menu'}</span>
                 {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -97,7 +97,7 @@ export default function Layout() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100">
+          <div className="md:hidden bg-brand-900 border-t border-brand-800">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -108,8 +108,8 @@ export default function Layout() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-3 py-3 rounded-md text-base font-medium ${
                       isActive(link.path)
-                        ? 'bg-brand-50 text-brand-600'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-brand-600'
+                        ? 'bg-brand-800 text-accent-400'
+                        : 'text-brand-100 hover:bg-brand-800 hover:text-accent-400'
                     }`}
                   >
                     <Icon className="h-5 w-5" />
@@ -137,7 +137,7 @@ export default function Layout() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-auto">
+      <footer className="bg-brand-900 border-t border-brand-800 mt-auto">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
@@ -147,18 +147,18 @@ export default function Layout() {
                 </div>
               ) : (
                 <>
-                  <div className="bg-gray-200 text-gray-500 font-bold text-lg h-8 w-8 flex items-center justify-center rounded-lg">
+                  <div className="bg-brand-800 text-accent-400 font-bold text-lg h-8 w-8 flex items-center justify-center rounded-lg border border-brand-700">
                     FL
                   </div>
-                  <span className="font-bold text-lg text-gray-500">{SITE_CONFIG.salesSiteName}</span>
+                  <span className="font-bold text-lg text-white">{SITE_CONFIG.salesSiteName}</span>
                 </>
               )}
             </div>
-            <p className="text-gray-500 text-sm text-center md:text-left">
+            <p className="text-brand-200 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {SITE_CONFIG.siteName}. Todos os direitos reservados.
             </p>
             <div className="flex gap-4">
-              <a href={SITE_CONFIG.salesUrl} className="text-brand-600 hover:text-brand-800 text-sm font-medium">
+              <a href={SITE_CONFIG.salesUrl} className="text-brand-100 hover:text-accent-400 text-sm font-medium">
                 Visitar Loja
               </a>
             </div>
