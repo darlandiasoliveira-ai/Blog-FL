@@ -12,7 +12,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Página de Links da Bio -->
+  <!-- Página de Links -->
   <url>
     <loc>https://blog.flcolchoes.com/links</loc>
     <changefreq>monthly</changefreq>
@@ -23,5 +23,77 @@
     <loc>https://blog.flcolchoes.com/sobre</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/painel-tv-nicho-ou-porta-aracaju-sergipe</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/como-escolher-guarda-roupa-ideal-aracaju</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/guarda-roupa-de-correr-ou-abrir-quarto</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/densidade-colchao-ideal-peso-aracaju</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/mesa-4-cadeiras-tampo-vidro-aracaju</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/moveis-prontos-de-fabrica-praticidade-inteligente</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/como-escolher-o-colchao-ideal</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/painel-ou-rack-aracaju-sergipe</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/cozinha-modulada-aracaju-sergipe</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/sofa-retratil-ou-fixo-como-escolher-sala</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/mdf-ou-mdp-qual-a-diferenca-melhor-material-moveis</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://blog.flcolchoes.com/blog/cozinha-modulada-ou-planejada-diferenca-custo-beneficio</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
