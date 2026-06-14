@@ -25,6 +25,8 @@ export default function AdminPostEditor() {
     slug: '',
     metaDescription: '',
     keywords: '',
+    aiSummary: '',
+    sources: '',
   });
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
