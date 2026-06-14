@@ -80,7 +80,7 @@ service cloud.firestore {
     }
 
     function isValidPost(data) {
-      return hasOnlyAllowedFields(['title', 'excerpt', 'content', 'imageUrl', 'date', 'author', 'category', 'published', 'seoTitle', 'slug', 'metaDescription', 'keywords', 'createdAt', 'updatedAt']) &&
+      return hasOnlyAllowedFields(['title', 'excerpt', 'content', 'imageUrl', 'date', 'author', 'category', 'published', 'seoTitle', 'slug', 'metaDescription', 'keywords', 'aiSummary', 'sources', 'createdAt', 'updatedAt']) &&
              data.title is string && data.title.size() > 0 && data.title.size() <= 200 &&
              data.excerpt is string && data.excerpt.size() > 0 && data.excerpt.size() <= 500 &&
              data.content is string && data.content.size() > 0 && data.content.size() <= 100000 &&
@@ -93,6 +93,8 @@ service cloud.firestore {
              (!('slug' in data) || (data.slug is string && data.slug.size() <= 200)) &&
              (!('metaDescription' in data) || (data.metaDescription is string && data.metaDescription.size() <= 500)) &&
              (!('keywords' in data) || (data.keywords is string && data.keywords.size() <= 200)) &&
+             (!('aiSummary' in data) || (data.aiSummary is string && data.aiSummary.size() <= 2000)) &&
+             (!('sources' in data) || (data.sources is string && data.sources.size() <= 2000)) &&
              data.createdAt is timestamp &&
              data.updatedAt is timestamp;
     }
