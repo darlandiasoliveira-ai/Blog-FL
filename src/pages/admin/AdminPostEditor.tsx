@@ -54,6 +54,8 @@ export default function AdminPostEditor() {
               slug: data.slug || '',
               metaDescription: data.metaDescription || '',
               keywords: data.keywords || '',
+              aiSummary: data.aiSummary || '',
+              sources: data.sources || '',
             });
           }
         } catch (error) {
@@ -371,6 +373,34 @@ export default function AdminPostEditor() {
                   value={formData.metaDescription}
                   onChange={handleChange}
                   placeholder="Ex: Aprenda a escolher o colchão perfeito..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-2 border-t border-gray-200 pt-6 mt-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Otimização para IAs (GEO - Generative Engine)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Resumo Direto para IA (AI Takeaway)</label>
+                <textarea
+                  name="aiSummary"
+                  rows={3}
+                  value={formData.aiSummary}
+                  onChange={handleChange}
+                  placeholder="Ex: O colchão ideal depende do peso, material (molas ensacadas vs espuma) e posição de dormir. Resumo objetivo, focado em responder diretamente a dúvidas de usuários geradas por ferramentas como ChatGPT e Google SGE."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Referências / Citações / Fontes (Authority)</label>
+                <textarea
+                  name="sources"
+                  rows={2}
+                  value={formData.sources}
+                  onChange={handleChange}
+                  placeholder="Ex: Sociedade Brasileira de Ortopedia (Estudo 2023), Especialistas da FL Colchões. Isso aumenta a autoridade na busca de IAs."
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500"
                 />
               </div>

@@ -12,6 +12,8 @@ export interface BlogPost {
   slug?: string;
   metaDescription?: string;
   keywords?: string;
+  aiSummary?: string;
+  sources?: string;
   createdAt: any; // Firestore Timestamp
   updatedAt: any; // Firestore Timestamp
 }

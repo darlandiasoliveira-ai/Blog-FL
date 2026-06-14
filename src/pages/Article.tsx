@@ -7,6 +7,7 @@ import { motion } from 'motion/react';
 import { doc, getDoc, collection, query, where, getDocs, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { BlogPost } from '../types';
+import SEO from '../components/SEO';
 
 export default function Article() {
   const { id } = useParams<{ id: string }>();
@@ -96,39 +97,6 @@ export default function Article() {
     fetchPost();
   }, [id]);
 
-  useEffect(() => {
-    const originalTitle = document.title;
-    
-    if (post) {
-      // Update SEO Title
-      document.title = post.seoTitle || `${post.title} | ${SITE_CONFIG.siteName}`;
-      
-      // Update Meta Description
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.setAttribute('name', 'description');
-        document.head.appendChild(metaDesc);
-      }
-      metaDesc.setAttribute('content', post.metaDescription || post.excerpt);
-
-      // Update Meta Keywords
-      if (post.keywords) {
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-          metaKeywords = document.createElement('meta');
-          metaKeywords.setAttribute('name', 'keywords');
-          document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', post.keywords);
-      }
-    }
-
-    return () => {
-      document.title = originalTitle;
-    };
-  }, [post]);
-
   if (loading) {
     return <div className="max-w-3xl mx-auto px-4 py-20 text-center">Carregando artigo...</div>;
   }
@@ -149,6 +117,12 @@ export default function Article() {
       transition={{ duration: 0.5 }}
       className="bg-white"
     >
+      <SEO 
+        title={post.seoTitle || post.title}
+        description={post.metaDescription || post.excerpt}
+        canonical={`/blog/${post.slug || post.id}`}
+        article={true}
+      />
       {/* Article Header */}
       <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
         <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 mb-8 transition-colors">
@@ -189,6 +163,14 @@ export default function Article() {
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        {post.aiSummary && (
+          <div className="bg-brand-50 border border-brand-100 p-6 mb-10 rounded-2xl">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-700 mb-2">Resumo Direto / Key Takeaway</h3>
+            <p className="text-brand-900 leading-relaxed font-medium">{post.aiSummary}</p>
+          </div>
+        )}
+
         <div className="markdown-body text-lg">
           <Markdown
             components={{
@@ -215,6 +197,15 @@ export default function Article() {
           </Markdown>
         </div>
         
+        {post.sources && (
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">Fontes e Referências:</h4>
+            <div className="text-sm text-gray-600 leading-relaxed max-w-2xl whitespace-pre-wrap">
+              {post.sources}
+            </div>
+          </div>
+        )}
+
         {/* Call to Action Box */}
         <div className="mt-16 bg-brand-50 border border-brand-100 rounded-2xl p-8 text-center">
           <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
