@@ -7,7 +7,7 @@ export default function BioLinks() {
   // ==========================================
   // DADOS PARA EDITAR - INSIRA SEUS LINKS AQUI
   // ==========================================
-  const whatsappNumber = "5579991460156"; // WhatsApp de Venda
+  const whatsappNumber = "5579991991198"; // WhatsApp de Venda
   const whatsappMessage = "Olá! Vim do Instagram e gostaria de saber mais sobre as ofertas.";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 

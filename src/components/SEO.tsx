@@ -30,7 +30,7 @@ export default function SEO({
     "url": SITE_CONFIG.salesUrl,
     "logo": "https://blog.flcolchoes.com/brand-icon.png",
     "image": "https://cdn.vendizap.com/vendizap-produtos/e0eedcfbb8ccac591c81d6cad08bce00.webp",
-    "telephone": "(79) 99146-0156",
+    "telephone": "(79) 99199-1198",
     "address": [
       {
         "@type": "PostalAddress",

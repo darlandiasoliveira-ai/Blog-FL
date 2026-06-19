@@ -125,9 +125,9 @@ export default function Sobre() {
           </div>
 
           <div className="mt-12 flex justify-center">
-             <a href="https://wa.me/5579991460156?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20m%C3%B3veis%20e%20colch%C3%B5es." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-full font-bold transition-transform hover:scale-105 shadow-lg">
+             <a href="https://wa.me/5579991991198?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20m%C3%B3veis%20e%20colch%C3%B5es." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-full font-bold transition-transform hover:scale-105 shadow-lg">
                <MessageCircle className="w-6 h-6" />
-               WhatsApp Vendas: (79) 9 9146-0156
+               WhatsApp Vendas: (79) 9 9199-1198
              </a>
           </div>
         </div>
